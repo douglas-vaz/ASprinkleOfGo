@@ -1,0 +1,139 @@
+A Sprinkle of Go
+Google I/O Extended Goa
+25 Jun 2014
+Tags:
+
+Douglas Vaz
+GDG Goa
+
+http://github.com/douglas-vaz
+@Mistcrafter
+
+* Why a new language?
+- Problems faced by large-scale projects: slow builds, clumsy code, dependency issues
+- Take advantage of modern hardware
+- Balance performance and ease of use
+.image images/gopherbw.png 200 200
+
+* What is Go?
+- Open-source systems programming language developed at Google
+- Compiled, concurrent, garbage-collected, statically typed
+- Fun and productive
+.image images/slide-1.jpg
+
+* Hello Go
+- Familiar syntax
+.play sprinkle/hello.go
+.image images/golangru.png 300 300
+
+* cont..
+- Variables
+.code sprinkle/basics.go /START OMIT/,/END OMIT/
+
+- Functions
+.code sprinkle/basics.go /START FUNC/,/END FUNC/
+
+* Functions cont..
+Go supports first class functions, higher-order functions, user-defined function types, function literals, closures, and multiple return values. 
+
+.play sprinkle/funcs.go /START OMIT/,/END OMIT/
+
+* Object Oriented Programming
+- _structs_ encapsulate types (no _class_ keyword)
+- Function names starting with uppercase letters are public
+
+.play sprinkle/oop.go /START OMIT/,/END OMIT/
+
+* OOP cont...
+- No inheritance, sub-classing via composition
+- Polymorphism via interfaces
+
+.play sprinkle/shapes.go /START_1 OMIT/,/END_1 OMIT/
+
+* ...
+.code sprinkle/shapes.go /START_V OMIT/,/END_V OMIT/
+.code sprinkle/shapes.go /START OMIT/,/END OMIT/
+.play sprinkle/shapes.go /MAIN OMIT/,/MAIN_END OMIT/
+
+* Concurrency
+
+*Not* *Parallel*
+
+- Concurrency is a design concept, parallelism is implementation
+- Concurrency: Programming as the composition of independently executing processes. 
+- Parallelism: Programming as the simultaneous execution of computations.
+- Concurrency provides a way to structure a solution to solve a problem that may (but not necessarily) be parallelizable.
+
+* An example (courtesy Rob Pike)
+.image images/gophersimple1.jpg
+.image images/gophersimple2.jpg
+
+* Divide into concurrent tasks
+	- Load books
+	- Move to furnace
+	- Burn
+	- Return empty cart
+
+.image images/gophercomplex1.jpg
+
+* Concurrency in Go
+Go provides:
+- Concurrent execution via goroutines
+- Communication and synchronization via channels
+- Multi-way control via select
+
+* Goroutines
+- Not threads but similar in design
+- Multiplexed onto kernel level threads as required
+- Runs independently of other goroutines, shares the same address space
+
+* Goroutine example
+.code sprinkle/goroutine.go /START_LOOP1 OMIT/,/END_LOOP1 OMIT/
+.play sprinkle/goroutine.go /START_LOOP2 OMIT/,/END_LOOP2 OMIT/
+
+* A little more helpful..
+.code sprinkle/goroutine2.go /START_LOOP1 OMIT/,/END_LOOP1 OMIT/
+.play sprinkle/goroutine2.go /START_LOOP3 OMIT/,/END_LOOP3 OMIT/
+
+* Communicating with channels
+- Typed values to exchange information
+.code sprinkle/channels.go /START OMIT/,/END OMIT/
+.play sprinkle/channels.go /START_1 OMIT/,/END_1 OMIT/
+
+* Go crazy with channels
+- Can synchronize thousands of goroutines
+.code sprinkle/channels2.go /START OMIT/,/END OMIT/
+.play sprinkle/channels2.go /START_1 OMIT/,/END_1 OMIT
+
+* Example: Pipelining
+.image images/gophercomplex5.jpg
+
+* A pipelined wc
+- Count total words in all files in a directory
+	- Enumerate files in directory
+	- Read a file
+	- Count words in file
+	- Add counts
+
+* Enumerate files
+.code sprinkle/Pipeline.go /START_FEED OMIT/,/END_FEED OMIT
+
+* Read
+.code sprinkle/Pipeline.go /START_READ OMIT/,/END_READ OMIT
+
+* Count
+.code sprinkle/Pipeline.go /START_COUNT OMIT/,/END_COUNT OMIT
+
+* Add counts and link channels
+.play sprinkle/Pipeline.go /START_MAIN OMIT/,/END_MAIN OMIT
+
+* Go extras..
+- VCS: _go_ _get_
+- Testing: _go_ _test_
+- Auto-format: _go_ _fmt_
+- Resourceful standard library
+
+* Conclusion
+- Learn Go, it's worth your time
+- Think concurrent
+- May not be suited for every application
