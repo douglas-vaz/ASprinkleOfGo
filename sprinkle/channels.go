@@ -25,8 +25,8 @@ func main() {
 	fmt.Println("Sending message..")
 	ch <- 200
 
+	//Stop main thread for 1s (DON'T DO THIS IN A REAL PROGRAM)
+	time.Sleep(1000 * time.Millisecond) 
+
 	//END_1 OMIT
-
-	time.Sleep(5)
-
 }
